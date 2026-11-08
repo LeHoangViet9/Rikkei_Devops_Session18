@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Tên file log hiện tại đang ghi -->
+        <file>logs/application.log</file>
+        
+        <!-- Cấu hình chính sách xoay vòng (Rolling Policy) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Định dạng tên file khi được cắt ra: application-YYYY-MM-DD.Index.log -->
+            <fileNamePattern>logs/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            
+            <!-- Giới hạn kích thước tối đa của mỗi file log là 10MB -->
+            <maxFileSize>10MB</maxFileSize>
+            
+            <!-- Thời gian lưu trữ tối đa là 30 ngày. Các file cũ hơn sẽ bị xóa -->
+            <maxHistory>30</maxHistory>
+            
+            <!-- (Tùy chọn) Giới hạn tổng dung lượng thư mục log, ví dụ 3GB. Vượt quá sẽ xóa file cũ nhất -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console Appender thông thường -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Khai báo Custom Appender -->
+    <!-- Lưu ý đổi "com.example.yourpackage" thành package thực tế chứa class DiscordAppender -->
+    <appender name="DISCORD_ALERT" class="com.example.yourpackage.DiscordAppender">
+        <!-- Lấy Webhook URL của Discord bỏ vào đây -->
+        <webhookUrl>https://discord.com/api/webhooks/123456789/xyz_token</webhookUrl>
+    </appender>
+
+    <!-- Gắn Appender vào Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <!-- Appender này chỉ chạy khi có log ERROR như đã check ở class Java -->
+        <appender-ref ref="DISCORD_ALERT" />
+    </root>
+</configuration>
