@@ -1,0 +1,6 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        # Đã thêm loggers vào danh sách expose
+        include: health,info,loggers
